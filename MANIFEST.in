@@ -1,0 +1,6 @@
+include AUTHORS
+include README.rst
+include LICENSE
+recursive-include fluentcms_contactform/locale *.po *.mo
+recursive-include fluentcms_contactform/templates *.html
+recursive-include fluentcms_contactform/static *.css *.js

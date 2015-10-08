@@ -1,0 +1,11 @@
+{% load i18n %}{% blocktrans context 'email-text' with site_domain=site.domain %}Dear staff,
+
+A contactform was just filled in at {{ site_domain }}.{% endblocktrans %}
+{% for title, value in form_data.items %}
+  {{ title }}: {{ value }}{% endfor %}
+
+{% trans "The submitted form can also be viewed at:" context 'email-text' %}
+{{ admin_form_data_url }}
+
+{% blocktrans context 'email-text' with site_name=site.name %}Best,
+The {{ site_name }} team{% endblocktrans %}
