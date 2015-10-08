@@ -1,6 +1,6 @@
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.importlib import import_module
-from django.utils.lru_cache import lru_cache
+from .compat import lru_cache
 from . import appsettings
 
 _ipresolver = None

@@ -2,11 +2,11 @@ from __future__ import unicode_literals
 
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models
-from django.utils.lru_cache import lru_cache
 from django.utils.translation import ugettext_lazy as _
 from fluent_contents.models import ContentItem
 from phonenumber_field.modelfields import PhoneNumberField
 from . import appsettings
+from .compat import lru_cache
 from .utils import import_symbol
 
 
