@@ -1,9 +1,10 @@
 from django.conf import settings
 from django.contrib.admin.widgets import AdminTextareaWidget
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, ImproperlyConfigured
 from django.utils.translation import ugettext_lazy as _
 from fluent_contents.extensions import plugin_pool, ContentPlugin, ContentItemForm
 from .models import ContactFormItem, get_form_style_settings
+from .utils import import_symbol
 
 
 class ContactFormItemForm(ContentItemForm):
@@ -16,13 +17,19 @@ class ContactFormItemForm(ContentItemForm):
         Check whether the style can be used, to avoid frontend errors.
         """
         form_style = self.cleaned_data['form_style']
+        style_settings = get_form_style_settings(form_style)
 
         # Verify whether the style can be used
-        style_settings = get_form_style_settings(form_style)
         for app in style_settings.get('required_apps', ()):
             if app not in settings.INSTALLED_APPS:
                 msg = _("This form style can't be used, it requires the '{0}' app to be installed.")
                 raise ValidationError(msg.format(app))
+
+        try:
+            import_symbol(style_settings['form_class'])
+        except (ImportError, ImproperlyConfigured, AttributeError) as e:
+            msg = _("This form style can't be used, not all required libraries are installed.\n{0}")
+            raise ValidationError(msg.format(str(e)))
 
         return form_style
 

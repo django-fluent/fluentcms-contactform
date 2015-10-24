@@ -5,7 +5,7 @@ from .default import ContactForm
 try:
     from captcha.fields import CaptchaField
 except ImportError:
-    raise ImportError("To use {0}, you need to have django-simple-captcha installed.\nUse: pip install django-simple-captcha".format(__name__))
+    raise ImportError("To use {0}, you need to have django-simple-captcha installed.".format(__name__))
 
 
 class CaptchaContactForm(ContactForm):

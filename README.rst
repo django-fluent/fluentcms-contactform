@@ -185,6 +185,34 @@ This can be made more complicated when needed:
 
 See the documentation of django-simple-captcha_ for more examples.
 
+Using reCAPTCHA
+~~~~~~~~~~~~~~~
+
+In a similar way, you can use recapcha. Select the form option,
+and make sure everything is installed::
+
+    pip install django-recaptcha
+
+In ``settings.py``:
+
+.. code-block:: python
+
+    INSTALLED_APPS += (
+        'captcha',
+    )
+
+    RECAPTCHA_PUBLIC_KEY = '...'
+    RECAPTCHA_PRIVATE_KEY = '...'
+    RECAPTCHA_USE_SSL = True
+    NOCAPTCHA = True  # Use the new nocapcha
+
+See the documentation of django-recaptcha_ for more details.
+
+.. warning::
+    Don't install both django-simple-captcha_ and django-recaptcha_ as they both install
+    a ``captcha`` package in the same location.
+
+
 Frontend Configuration
 ----------------------
 
@@ -207,3 +235,4 @@ Pull requests are welcome too. :-)
 .. _django-phonenumber-field: https://github.com/stefanfoulis/django-phonenumber-field
 .. _django-ipware: https://github.com/un33k/django-ipware
 .. _django-simple-captcha: https://github.com/mbi/django-simple-captcha
+.. _django-recaptcha: https://github.com/praekelt/django-recaptcha
