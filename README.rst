@@ -1,7 +1,17 @@
 fluentcms-contactform
 ===================
 
-A plugin for django-fluent-contents_ to show a simple contact form
+A plugin for django-fluent-contents_ to show a simple contact form.
+
+Features:
+
+* Configurable fields.
+* Configurable layouts.
+* Phone number validation.
+* IP-Address detection.
+* Admin panel with submitted messages.
+* Email notification to staff members for new messages.
+* Optional capcha / reCAPTCHA support.
 
 Installation
 ============
