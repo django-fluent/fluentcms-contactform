@@ -14,7 +14,7 @@ from fluentcms_contactform import appsettings
 def send_contact_form_email(contactform, request, email_to, style='default'):
     """
     Send an email notification message.
-    :type contactform: ContactForm
+    :type contactform: fluentcms_contactform.forms.base.AbstractContactForm
     :type request: HttpRequest
     :type email_to: str
     """
@@ -34,7 +34,7 @@ class MessageFactory(object):
     def __init__(self, request):
         """
         :type request: HttpRequest
-        :type form: ContactForm
+        :type form: fluentcms_contactform.forms.base.AbstractContactForm
         """
         self.request = request
         self.site = get_current_site(self.request)

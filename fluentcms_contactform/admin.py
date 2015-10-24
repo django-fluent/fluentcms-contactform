@@ -1,11 +1,11 @@
 from django.contrib import admin
 from django.contrib.admin.widgets import AdminTextareaWidget
 from django.utils.translation import ugettext_lazy as _
-from .forms.default import ContactForm
+from .forms.default import DefaultContactForm
 from .models import ContactFormData
 
 
-FORM_DATA_FIELDS = tuple(ContactForm.base_fields.keys())
+FORM_DATA_FIELDS = tuple(DefaultContactForm.base_fields.keys())
 
 
 class ContactFormDataAdmin(admin.ModelAdmin):

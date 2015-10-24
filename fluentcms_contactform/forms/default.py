@@ -1,9 +1,9 @@
 from fluentcms_contactform import appsettings
-from .base import AbstractContactForm, ContactFormHelper, SubmitButton
-from ..models import ContactFormData
+from fluentcms_contactform.forms.base import AbstractContactForm, ContactFormHelper, SubmitButton
+from fluentcms_contactform.models import ContactFormData
 
 
-class ContactForm(AbstractContactForm):
+class DefaultContactForm(AbstractContactForm):
     """
     A simple contact form, backed by a model to save all data (in case email fails).
     """

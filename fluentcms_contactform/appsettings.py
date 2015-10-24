@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 FLUENTCMS_CONTACTFORM_STYLES = (
     ('default', {
         'title': _("Default"),
-        'form_class': 'fluentcms_contactform.forms.default.ContactForm',
+        'form_class': 'fluentcms_contactform.forms.default.DefaultContactForm',
         'required_apps': (),
     }),
     ('captcha', {

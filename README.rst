@@ -1,5 +1,5 @@
 fluentcms-contactform
-===================
+=====================
 
 A plugin for django-fluent-contents_ to show a simple contact form.
 
@@ -54,6 +54,12 @@ Make sure the following settings are configured:
         'REMOTE_ADDR',   # The HTTP header for IP address detection
     )
 
+To have bootstrap 3 layouts, add:
+
+.. code-block:: python
+
+    CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
 
 IP address detection
 ~~~~~~~~~~~~~~~~~~~~
@@ -95,24 +101,45 @@ The default form fields can be changed using:
 
     FLUENTCMS_CONTACTFORM_DEFAULT_FIELDS = ('name', 'email', 'phone_number', 'subject', 'message')
 
-The form styles can be defined using:
+    # default CSS styles
+    CRISPY_TEMPLATE_PACK = 'bootstrap3'
+    FLUENTCMS_CONTACTFORM_FORM_CSS_CLASS = 'form-horizontal'
+    FLUENTCMS_CONTACTFORM_LABEL_CSS_CLASS = 'col-xs-3'
+    FLUENTCMS_CONTACTFORM_FIELD_CSS_CLASS = 'col-xs-9'
+
+
+Adding form fields
+~~~~~~~~~~~~~~~~~~
+
+The form layout is fully configurable, as you can select your own form classes.
+The default settings are:
 
 .. code-block:: python
 
     FLUENTCMS_CONTACTFORM_STYLES = (
         ('default', {
             'title': _("Default"),
-            'form_class': 'fluentcms_contactform.forms.default.ContactForm',
+            'form_class': 'fluentcms_contactform.forms.default.DefaultContactForm',
+            'required_apps': (),
         }),
         ('captcha', {
             'title': _("Default with captcha"),
             'form_class': 'fluentcms_contactform.forms.captcha.CaptchaContactForm',
+            'required_apps': ('captcha',),
+        }),
+        ('recaptcha', {
+            'title': _("Default with reCAPTCHA"),
+            'form_class': 'fluentcms_contactform.forms.recaptcha.ReCaptchaContactForm',
+            'required_apps': ('captcha',),
         }),
     )
 
 You can provide any form class, as long as it inherits from ``fluentcms_contactform.forms.AbstractContactForm``.
 The current implementation expects the form to be a model form,
 so any submitted data is safely stored in the database too.
+
+By providing a ``helper`` function, the form fields received default styling from django-crispy-forms_.
+See the provided form code in :mod:`fluentcms_contactform.forms` for examples.
 
 
 Displaying phone numbers
@@ -246,3 +273,4 @@ Pull requests are welcome too. :-)
 .. _django-ipware: https://github.com/un33k/django-ipware
 .. _django-simple-captcha: https://github.com/mbi/django-simple-captcha
 .. _django-recaptcha: https://github.com/praekelt/django-recaptcha
+.. _django-crispy-forms: https://github.com/maraujop/django-crispy-forms
