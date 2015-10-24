@@ -3,4 +3,3 @@ include README.rst
 include LICENSE
 recursive-include fluentcms_contactform/locale *.po *.mo
 recursive-include fluentcms_contactform/templates *.html *.txt
-recursive-include fluentcms_contactform/static *.css *.js

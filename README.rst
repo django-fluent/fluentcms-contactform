@@ -139,7 +139,7 @@ The current implementation expects the form to be a model form,
 so any submitted data is safely stored in the database too.
 
 By providing a ``helper`` function, the form fields received default styling from django-crispy-forms_.
-See the provided form code in :mod:`fluentcms_contactform.forms` for examples.
+See the provided form code in ``fluentcms_contactform.forms`` for examples.
 
 
 Displaying phone numbers
