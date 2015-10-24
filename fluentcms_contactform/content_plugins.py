@@ -1,7 +1,30 @@
+from django.conf import settings
 from django.contrib.admin.widgets import AdminTextareaWidget
+from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
-from fluent_contents.extensions import plugin_pool, ContentPlugin
-from .models import ContactFormItem
+from fluent_contents.extensions import plugin_pool, ContentPlugin, ContentItemForm
+from .models import ContactFormItem, get_form_style_settings
+
+
+class ContactFormItemForm(ContentItemForm):
+    """
+    Validate the contact form.
+    """
+
+    def clean_form_style(self):
+        """
+        Check whether the style can be used, to avoid frontend errors.
+        """
+        form_style = self.cleaned_data['form_style']
+
+        # Verify whether the style can be used
+        style_settings = get_form_style_settings(form_style)
+        for app in style_settings.get('required_apps', ()):
+            if app not in settings.INSTALLED_APPS:
+                msg = _("This form style can't be used, it requires the '{0}' app to be installed.")
+                raise ValidationError(msg.format(app))
+
+        return form_style
 
 
 @plugin_pool.register
@@ -10,6 +33,7 @@ class ContactFormPlugin(ContentPlugin):
     Plugin to render and process a contact form.
     """
     model = ContactFormItem
+    form = ContactFormItemForm
     category = _("Media")
     render_template = "fluentcms_contactform/forms/{style}.html"
     render_ignore_item_language = True

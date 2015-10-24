@@ -43,6 +43,7 @@ setup(
         'django-ipware>=1.1.1',
         'django-phonenumber-field>=0.7.2',
         'django-crispy-forms >= 1.3',
+        'django-simple-captcha >= 0.4.6',
     ],
     requires=[
         'Django (>=1.4)',

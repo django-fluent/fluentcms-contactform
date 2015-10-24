@@ -70,7 +70,16 @@ class ContactFormItem(ContentItem):
 
 @lru_cache()
 def _get_form_class(form_style):
+    # Load and cache the form class.
+    style = get_form_style_settings(form_style)
+    return import_symbol(style['form_class'])
+
+
+def get_form_style_settings(form_style):
+    """
+    Return the metadata of a form style.
+    """
     for key, style in appsettings.FLUENTCMS_CONTACTFORM_STYLES:
         if key == form_style:
-            return import_symbol(style['form_class'])
+            return style
     raise ImproperlyConfigured("No FLUENTCMS_CONTACTFORM_STYLES defined for '{0}'".format(form_style))

@@ -134,6 +134,57 @@ The supported formats are:
 * ``RFC3966`` - the ``tel:`` URL, suitable for URL display.
 
 
+Displaying captcha's
+~~~~~~~~~~~~~~~~~~~~
+
+The ``fluentcms_contactform.forms.captcha`` provides an example to create a captcha form.
+This requires a properly installed django-simple-captcha_ form::
+
+    pip install django-simple-captcha
+
+In ``settings.py``:
+
+.. code-block:: python
+
+    INSTALLED_APPS += (
+        'captcha',
+    )
+
+In ``urls.py``:
+
+.. code-block:: python
+
+    urlpatterns = [
+        # ...
+
+        url(r'^api/captcha/', include('captcha.urls')),
+
+    ]
+
+Add the database tables::
+
+    python manage.py migrate
+
+And optional settings to simplify the captcha:
+
+.. code-block:: python
+
+    CAPTCHA_NOISE_FUNCTIONS = ()
+    CAPTCHA_FONT_SIZE = 30
+    CAPTCHA_LETTER_ROTATION = (-10,10)
+
+This can be made more complicated when needed:
+
+.. code-block:: python
+
+    CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+    CAPTCHA_NOISE_FUNCTIONS = (
+        'captcha.helpers.noise_arcs',
+        'captcha.helpers.noise_dots',
+    )
+
+See the documentation of django-simple-captcha_ for more examples.
+
 Frontend Configuration
 ----------------------
 
@@ -155,3 +206,4 @@ Pull requests are welcome too. :-)
 .. _django-fluent-contents: https://github.com/edoburu/django-fluent-contents
 .. _django-phonenumber-field: https://github.com/stefanfoulis/django-phonenumber-field
 .. _django-ipware: https://github.com/un33k/django-ipware
+.. _django-simple-captcha: https://github.com/mbi/django-simple-captcha

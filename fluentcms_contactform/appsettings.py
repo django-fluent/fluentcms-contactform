@@ -6,10 +6,12 @@ FLUENTCMS_CONTACTFORM_STYLES = (
     ('default', {
         'title': _("Default"),
         'form_class': 'fluentcms_contactform.forms.default.ContactForm',
+        'required_apps': (),
     }),
     ('captcha', {
         'title': _("Default with captcha"),
         'form_class': 'fluentcms_contactform.forms.captcha.CaptchaContactForm',
+        'required_apps': ('captcha',),
     }),
 )
 
