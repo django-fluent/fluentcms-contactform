@@ -21,9 +21,11 @@ class ContactFormDataAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': FORM_DATA_FIELDS,
+            'classes': ('wide',),
         }),
         (_("Staff information"), {
             'fields': ('submit_date', 'ip_address', 'internal_note', 'is_archived'),
+            'classes': ('wide',),
         })
     )
     readonly_fields = FORM_DATA_FIELDS + ('submit_date', 'ip_address')
