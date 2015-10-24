@@ -1,5 +1,5 @@
-from .base import AbstractContactForm
 from fluentcms_contactform import appsettings
+from .base import AbstractContactForm, ContactFormHelper, SubmitButton
 from ..models import ContactFormData
 
 
@@ -11,3 +11,6 @@ class ContactForm(AbstractContactForm):
     class Meta:
         model = ContactFormData
         fields = appsettings.FLUENTCMS_CONTACTFORM_DEFAULT_FIELDS
+
+    helper = ContactFormHelper()
+    helper.add_input(SubmitButton())

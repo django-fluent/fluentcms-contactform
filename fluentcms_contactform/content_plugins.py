@@ -14,6 +14,7 @@ class ContactFormPlugin(ContentPlugin):
     render_template = "fluentcms_contactform/forms/{style}.html"
     render_ignore_item_language = True
     cache_output = False
+    submit_button_name = 'contactform_submit'
 
     formfield_overrides = {
         'success_message': {
@@ -27,7 +28,7 @@ class ContactFormPlugin(ContentPlugin):
         """
         return [
             self.render_template.format(style=instance.form_style),
-            self.render_template.format(style='default'),
+            self.render_template.format(style='base'),
         ]
 
 
@@ -41,7 +42,7 @@ class ContactFormPlugin(ContentPlugin):
         ContactForm = instance.get_form_class()
         if request.method == 'POST':
             # Allow multiple forms at the same page.
-            if 'contactform_submit' in request.POST:
+            if not self.submit_button_name or self.submit_button_name in request.POST:
                 form = ContactForm(request.POST, request.FILES, user=request.user, prefix='contact')
             else:
                 form = ContactForm(initial=request.POST, user=request.user, prefix='contact')

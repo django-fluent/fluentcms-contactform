@@ -1,0 +1,50 @@
+{% load i18n crispy_forms_tags %}
+{% comment %}
+
+    This is the default contact form rendering.
+    All form layouts are handled by django-crispy-forms,
+    which gives full control over the form layout via code.
+
+    The form class can be configured using FLUENTCMS_CONTACTFORM_STYLES
+
+    Note, from the template you can also perform adaptive layouts,
+    by reading the `instance.placeholder.role` or `slot` field.
+
+    The many if-statements here are not needed in most templates.
+    They are included to provde a good out-of-the-box experience.
+    Just using {% crispy form %} is enough on a properly configured form.
+
+    NOTE:
+    When adding a custom submit button, make it it has a `name="contactform_submit"` attribute.
+    The backend uses that to filter form submissions in case there are multiple forms on the page.
+
+{% endcomment %}
+<div class="contactform{% if instance.placeholder.role == 's' %} in-sidebar{% endif %}">
+    {% if completed %}
+        {% block completed_message %}
+            <p>{{ instance.success_message|linebreaksbr|urlize }}</p>
+
+            {# <p><a href="{{ request.path }}">{% trans "Back to the previous page." %}</a></p> #}
+        {% endblock %}
+    {% else %}
+
+        {% block form_tag %}
+            {# This is only here to give a good out-of-the-box experience. You can remove it in your own templates #}
+            {% if form.helper or not form.helper.form_tag %}
+            <form method="post" action="" class="{% block form_class %}{% if form.helper.form_class %}{{ form.helper.form_class }}{%elif instance.placeholder.role == 's' %}form-vertical{% else %}form-horizontal{% endif %}{% endblock %}">
+              {% csrf_token %}
+            {% endif %}
+
+            {% block form_content %}{% crispy form %}{% endblock %}
+
+            {% if not form.helper.inputs and not form.helper.layout %}
+                <div class="form-actions">
+                    {# The name="contactform_submit" is used in the backend to detect form submission #}
+                    <input type="submit" class="btn btn-default" name="contactform_submit" value="{% trans 'Submit' %}" />
+                </div>
+            {% endif %}
+
+            {% if form.helper or not form.helper.form_tag %}</form>{% endif %}
+        {% endblock %}
+    {% endif %}
+</div>

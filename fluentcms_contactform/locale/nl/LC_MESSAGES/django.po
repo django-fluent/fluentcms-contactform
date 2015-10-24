@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-08 22:26+0200\n"
+"POT-Creation-Date: 2015-10-24 12:25+0200\n"
 "PO-Revision-Date: 2015-10-08 21:32+0200\n"
 "Last-Translator: Diederik van der Boor <vdboor@edoburu.nl>\n"
 "Language-Team: \n"
@@ -43,6 +43,10 @@ msgstr ""
 #, python-brace-format
 msgid "Contact form submitted by '{name}'"
 msgstr "Contactformulier verstuurd door '{name}'"
+
+#: forms/base.py:21 templates/fluentcms_contactform/forms/base.html:43
+msgid "Submit"
+msgstr "Versturen"
 
 #: forms/captcha.py:14
 msgctxt "captcha-help-text"
@@ -83,7 +87,7 @@ msgstr "E-mail"
 
 #: models.py:38
 msgid "Phone number"
-msgstr ""
+msgstr "Telefoonnummer"
 
 #: models.py:39
 msgid "Subject"
@@ -112,10 +116,6 @@ msgstr "Bericht na versturen"
 #: models.py:61 models.py:62
 msgid "Contact form"
 msgstr "Contactformulier"
-
-#: templates/fluentcms_contactform/forms/default.html:13
-msgid "Submit"
-msgstr "Versturen"
 
 #: templates/fluentcms_contactform/staff_email/default.txt:1
 #, python-format
