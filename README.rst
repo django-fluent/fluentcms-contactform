@@ -77,7 +77,8 @@ For default sites (Apache + mod_wsgi / Nginx + uWSGI) add the following to your 
     )
 
 When the WSGI proces runs as a separate HTTP server (for Gunicorn),
-or runs behind a load balancer (HAProxy or Nginx reverse proxy), configure the following:
+or runs behind a load balancer (HAProxy or Nginx reverse proxy) a different header might be needed.
+You can either use middleware for WsgiUnproxy_ with the settings above, or configure the following:
 
 .. code-block:: python
 
@@ -274,3 +275,4 @@ Pull requests are welcome too. :-)
 .. _django-simple-captcha: https://github.com/mbi/django-simple-captcha
 .. _django-recaptcha: https://github.com/praekelt/django-recaptcha
 .. _django-crispy-forms: https://github.com/maraujop/django-crispy-forms
+.. _WsgiUnproxy: https://pypi.python.org/pypi/WsgiUnproxy
