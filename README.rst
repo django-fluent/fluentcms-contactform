@@ -64,33 +64,31 @@ To have bootstrap 3 layouts, add:
 IP address detection
 ~~~~~~~~~~~~~~~~~~~~
 
-The visitor IP-address is stored with the submited data.
-The detection happens using django-ipware_ which uses a "it just works" approach.
-For security, make sure the correct HTTP header is checked for IP addresses.
+This package stores the remote IP of the visitor in the model.
+The IP Address is read from the ``REMOTE_ADDR`` meta field.
+In case your site is behind a HTTP proxy (e.g. using Gunicorn or a load balancer),
+this would make all contact form submissions appear to be sent from the load balancer IP.
 
-For default sites (Apache + mod_wsgi / Nginx + uWSGI) add the following to your settings:
+The best and most secure way to fix this, is using WsgiUnproxy_ middleware in your ``wsgi.py``:
 
 .. code-block:: python
 
-    IPWARE_META_PRECEDENCE_ORDER = (
-        'REMOTE_ADDR',
+    from django.core.wsgi import get_wsgi_application
+    from django.conf import settings
+    from wsgiunproxy import unproxy
+
+    application = get_wsgi_application()
+    application = unproxy(trusted_proxies=settings.TRUSTED_X_FORWARDED_FOR_IPS)(application)
+
+In your ``settings.py``, you can define which hosts may pass the ``X-Forwarded-For``
+header in the HTTP request. For example:
+
+.. code-block:: python
+
+    TRUSTED_X_FORWARDED_FOR_IPS = (
+        '11.22.33.44',
+        '192.168.0.1',
     )
-
-When the WSGI proces runs as a separate HTTP server (for Gunicorn),
-or runs behind a load balancer (HAProxy or Nginx reverse proxy) a different header might be needed.
-You can either use middleware for WsgiUnproxy_ with the settings above, or configure the following:
-
-.. code-block:: python
-
-    IPWARE_META_PRECEDENCE_ORDER = (
-        'HTTP_X_FORWARDED_FOR',
-    )
-
-If your site has it's own IP resolver function, you can also configure it. The default is:
-
-.. code-block:: python
-
-    FLUENTCMS_CONTACTFORM_IP_RESOLVER = 'ipware.ip.get_real_ip'
 
 
 Updating the form layout
@@ -271,7 +269,6 @@ Pull requests are welcome too. :-)
 
 .. _django-fluent-contents: https://github.com/edoburu/django-fluent-contents
 .. _django-phonenumber-field: https://github.com/stefanfoulis/django-phonenumber-field
-.. _django-ipware: https://github.com/un33k/django-ipware
 .. _django-simple-captcha: https://github.com/mbi/django-simple-captcha
 .. _django-recaptcha: https://github.com/praekelt/django-recaptcha
 .. _django-crispy-forms: https://github.com/maraujop/django-crispy-forms
