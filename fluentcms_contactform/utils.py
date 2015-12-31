@@ -2,7 +2,11 @@
 Util functions
 """
 from django.core.exceptions import ImproperlyConfigured
-from django.utils.importlib import import_module
+
+try:
+    from importlib import import_module  # Python 2.7+
+except ImportError:
+    from django.utils.importlib import import_module
 
 
 def import_symbol(import_path):
