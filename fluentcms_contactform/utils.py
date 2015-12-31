@@ -1,9 +1,9 @@
+"""
+Util functions
+"""
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.importlib import import_module
-from .compat import lru_cache
-from . import appsettings
 
-_ipresolver = None
 
 def import_symbol(import_path):
     """
@@ -26,18 +26,11 @@ def import_symbol(import_path):
         raise ImproperlyConfigured('Module "{0}" does not define a "{1}" class.'.format(module, classname))
 
 
-
 def get_remote_ip(request):
     """
     Find the IP address of the current request.
     This may require reading a different request header depending on the server setup.
-    By default this is handled by django-ipware, but you can use your own resolver if needed
-    by defining ``FLUENTCMS_CONTACTFORM_IP_RESOLVER``.
+    However, we recommend using wsgiunproxy instead,
+    so all packages can read the same header consistently.
     """
-    ip_resolver = get_ip_resolver()
-    return ip_resolver(request)
-
-
-@lru_cache()
-def get_ip_resolver():
-    return import_symbol(appsettings.FLUENTCMS_CONTACTFORM_IP_RESOLVER)
+    return request.META.get('REMOTE_ADDR', None)

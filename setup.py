@@ -40,7 +40,6 @@ setup(
 
     install_requires=[
         'django-fluent-contents>=1.0',
-        'django-ipware>=1.1.1',
         'django-phonenumber-field>=0.7.2',
         'django-crispy-forms >= 1.3',
     ],

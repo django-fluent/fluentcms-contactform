@@ -30,9 +30,6 @@ FLUENTCMS_CONTACTFORM_DEFAULT_FIELDS = getattr(settings, 'FLUENTCMS_CONTACTFORM_
 # The possible contact form styles the user can choose
 FLUENTCMS_CONTACTFORM_STYLES = getattr(settings, 'FLUENTCMS_CONTACTFORM_STYLES', FLUENTCMS_CONTACTFORM_STYLES)
 
-# The IP address resolving function, defaults to django-ipware's public IP address detection
-FLUENTCMS_CONTACTFORM_IP_RESOLVER = getattr(settings, 'FLUENTCMS_CONTACTFORM_IP_RESOLVER', 'ipware.ip.get_real_ip')
-
 # Allow changing the layout easily without having to replace the whole form classes
 FLUENTCMS_CONTACTFORM_FORM_CSS_CLASS = getattr(settings, 'FLUENTCMS_CONTACTFORM_FORM_CSS_CLASS', 'form-horizontal')
 FLUENTCMS_CONTACTFORM_LABEL_CSS_CLASS = getattr(settings, 'FLUENTCMS_CONTACTFORM_LABEL_CSS_CLASS', 'col-xs-3')
