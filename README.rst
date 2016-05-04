@@ -50,10 +50,6 @@ Make sure the following settings are configured:
 
     FLUENTCMS_CONTACTFORM_VIA = "Sitename"    # Will send a From: "Username via Sitename" email.
 
-    IPWARE_META_PRECEDENCE_ORDER = (
-        'REMOTE_ADDR',   # The HTTP header for IP address detection
-    )
-
 To have bootstrap 3 layouts, add:
 
 .. code-block:: python
