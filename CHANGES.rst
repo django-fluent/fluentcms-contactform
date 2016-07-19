@@ -1,6 +1,13 @@
 Changelog
 =========
 
+Version 1.2 (2016-07-19)
+------------------------
+
+* Support multiple forms at the same page.
+* Fix default layout on mobile, avoid horizontal columns for label/inputs.
+
+
 Version 1.1 (2016-02-03)
 ------------------------
 
