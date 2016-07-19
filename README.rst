@@ -102,6 +102,12 @@ The default form fields can be changed using:
     FLUENTCMS_CONTACTFORM_LABEL_CSS_CLASS = 'col-xs-3'
     FLUENTCMS_CONTACTFORM_FIELD_CSS_CLASS = 'col-xs-9'
 
+For example, the subject can be removed using:
+
+.. code-block:: python
+
+    FLUENTCMS_CONTACTFORM_DEFAULT_FIELDS = ('name', 'email', 'phone_number', 'message')
+
 
 Adding form fields
 ~~~~~~~~~~~~~~~~~~
@@ -136,6 +142,7 @@ so any submitted data is safely stored in the database too.
 By providing a ``helper`` function, the form fields received default styling from django-crispy-forms_.
 See the provided form code in ``fluentcms_contactform.forms`` for examples.
 
+The form is rendered with the ``fluentcms_contactform/forms/*name*.html`` template.
 
 Displaying phone numbers
 ~~~~~~~~~~~~~~~~~~~~~~~~
