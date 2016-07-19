@@ -18,6 +18,7 @@ class SubmitButton(Submit):
 
     Note: the ``contactform_submit`` is mandatory, it helps the
     """
+
     def __init__(self, text=_("Submit"), **kwargs):
         super(SubmitButton, self).__init__(name='contactform_submit', value=text, **kwargs)
 
@@ -60,7 +61,6 @@ class PrefillUserMixin(object):
         if self.user is not None and self.user.is_authenticated():
             return self.initial['name']
         return self.cleaned_data['name']
-
 
 
 class AbstractContactForm(forms.ModelForm):

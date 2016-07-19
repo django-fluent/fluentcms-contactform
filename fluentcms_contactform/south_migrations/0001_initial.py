@@ -35,14 +35,12 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal(u'fluentcms_contactform', ['ContactFormItem'])
 
-
     def backwards(self, orm):
         # Deleting model 'ContactFormData'
         db.delete_table(u'fluentcms_contactform_contactformdata')
 
         # Deleting model 'ContactFormItem'
         db.delete_table(u'contentitem_fluentcms_contactform_contactformitem')
-
 
     models = {
         u'contenttypes.contenttype': {
