@@ -32,8 +32,8 @@ FLUENTCMS_CONTACTFORM_STYLES = getattr(settings, 'FLUENTCMS_CONTACTFORM_STYLES',
 
 # Allow changing the layout easily without having to replace the whole form classes
 FLUENTCMS_CONTACTFORM_FORM_CSS_CLASS = getattr(settings, 'FLUENTCMS_CONTACTFORM_FORM_CSS_CLASS', 'form-horizontal')
-FLUENTCMS_CONTACTFORM_LABEL_CSS_CLASS = getattr(settings, 'FLUENTCMS_CONTACTFORM_LABEL_CSS_CLASS', 'col-xs-3')
-FLUENTCMS_CONTACTFORM_FIELD_CSS_CLASS = getattr(settings, 'FLUENTCMS_CONTACTFORM_FIELD_CSS_CLASS', 'col-xs-9')
+FLUENTCMS_CONTACTFORM_LABEL_CSS_CLASS = getattr(settings, 'FLUENTCMS_CONTACTFORM_LABEL_CSS_CLASS', 'col-sm-3')
+FLUENTCMS_CONTACTFORM_FIELD_CSS_CLASS = getattr(settings, 'FLUENTCMS_CONTACTFORM_FIELD_CSS_CLASS', 'col-sm-9')
 
 # Internal variable exposed via settings
 FORM_STYLE_CHOICES = [(key, style['title']) for key, style in FLUENTCMS_CONTACTFORM_STYLES]
