@@ -3,6 +3,8 @@ from django.contrib.admin.widgets import AdminTextareaWidget
 from django.core.exceptions import ValidationError, ImproperlyConfigured
 from django.utils.translation import ugettext_lazy as _
 from fluent_contents.extensions import plugin_pool, ContentPlugin, ContentItemForm
+
+from fluentcms_contactform.forms.base import SubmitButton
 from .models import ContactFormItem, get_form_style_settings
 from .utils import import_symbol
 
@@ -45,6 +47,7 @@ class ContactFormPlugin(ContentPlugin):
     render_template = "fluentcms_contactform/forms/{style}.html"
     render_ignore_item_language = True
     cache_output = False
+    submit_button_name = 'contact{pk}_submit'
 
     formfield_overrides = {
         'success_message': {
@@ -67,7 +70,7 @@ class ContactFormPlugin(ContentPlugin):
         """
         # Allow multiple forms at the same page.
         prefix = 'contact{0}'.format(instance.pk)
-        submit_button_name = 'contact{0}_submit'.format(instance.pk)
+        submit_button_name = self.submit_button_name.format(pk=instance.pk)
         session_data_key = 'contact{0}_submitted'.format(instance.pk)
 
         # Base context
@@ -77,7 +80,7 @@ class ContactFormPlugin(ContentPlugin):
 
         ContactForm = instance.get_form_class()
         if request.method == 'POST':
-            if submit_button_name in request.POST:
+            if submit_button_name in request.POST or 'contactform_submit' in request.POST:
                 form = ContactForm(request.POST, request.FILES, user=request.user, prefix=prefix)
             else:
                 form = ContactForm(initial=request.POST, user=request.user, prefix=prefix)
@@ -98,6 +101,13 @@ class ContactFormPlugin(ContentPlugin):
             if request.session.get(session_data_key):
                 del request.session[session_data_key]
                 context['completed'] = True
+
+        if hasattr(form, 'helper') and form.helper.inputs:
+            # Hacky, when using crispy layouts, make sure the button name is set.
+            # In case this fails, the code above also checks for the general 'contactform_submit' name.
+            submit_buttons = [input for input in form.helper.inputs if isinstance(input, SubmitButton)]
+            if submit_buttons:
+                submit_buttons[0].name = submit_button_name
 
         context['form'] = form
         template = self.get_render_template(request, instance, **kwargs)
