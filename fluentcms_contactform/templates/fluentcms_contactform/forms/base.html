@@ -39,8 +39,8 @@
 
             {% if not form.helper.inputs and not form.helper.layout %}
                 <div class="form-actions">
-                    {# The name="contactform_submit" is used in the backend to detect form submission #}
-                    <input type="submit" class="btn btn-default" name="contactform_submit" value="{% trans 'Submit' %}" />
+                    {# The button name is used in the backend to detect form submission #}
+                    <input type="submit" class="btn btn-default" name="{{ submit_button_name }}" value="{% trans 'Submit' %}" />
                 </div>
             {% endif %}
 

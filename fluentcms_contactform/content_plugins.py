@@ -45,7 +45,6 @@ class ContactFormPlugin(ContentPlugin):
     render_template = "fluentcms_contactform/forms/{style}.html"
     render_ignore_item_language = True
     cache_output = False
-    submit_button_name = 'contactform_submit'
 
     formfield_overrides = {
         'success_message': {
@@ -62,36 +61,42 @@ class ContactFormPlugin(ContentPlugin):
             self.render_template.format(style='base'),
         ]
 
-
     def render(self, request, instance, **kwargs):
         """
         Render the plugin, process the form.
         """
+        # Allow multiple forms at the same page.
+        prefix = 'contact{0}'.format(instance.pk)
+        submit_button_name = 'contact{0}_submit'.format(instance.pk)
+        session_data_key = 'contact{0}_submitted'.format(instance.pk)
+
+        # Base context
         context = self.get_context(request, instance, **kwargs)
+        context['submit_button_name'] = submit_button_name
         context['completed'] = False
 
         ContactForm = instance.get_form_class()
         if request.method == 'POST':
-            # Allow multiple forms at the same page.
-            if not self.submit_button_name or self.submit_button_name in request.POST:
-                form = ContactForm(request.POST, request.FILES, user=request.user, prefix='contact')
+            if submit_button_name in request.POST:
+                form = ContactForm(request.POST, request.FILES, user=request.user, prefix=prefix)
             else:
-                form = ContactForm(initial=request.POST, user=request.user, prefix='contact')
+                form = ContactForm(initial=request.POST, user=request.user, prefix=prefix)
 
             if form.is_valid():
                 # Submit the email, save the data in the database.
                 form.submit(request, instance.email_to, style=instance.form_style)
 
-                # Request a redirect
+                # Request a redirect.
+                # Use the session temporary so results are shown at the next GET call.
                 # TODO: offer option to redirect to a different page.
-                request.session['fluentcms_contactform_completed'] = True
+                request.session[session_data_key] = True
                 return self.redirect(request.path)
         else:
-            form = ContactForm(user=request.user, prefix='contact')
+            form = ContactForm(user=request.user, prefix=prefix)
 
             # Show completed message
-            if request.session.get('fluentcms_contactform_completed'):
-                del request.session['fluentcms_contactform_completed']
+            if request.session.get(session_data_key):
+                del request.session[session_data_key]
                 context['completed'] = True
 
         context['form'] = form
