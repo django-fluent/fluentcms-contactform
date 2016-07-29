@@ -20,9 +20,9 @@ class CompactContactForm(AbstractContactForm):
 
         FLUENTCMS_CONTACTFORM_DEFAULT_FIELDS = ('name', 'email', 'phone_number', 'message')
     """
-    top_row_fields = ('name', 'email', 'phone_number')
-    top_row_columns = 12
-    top_column_class = "col-sm-{size}"
+    top_row_fields = appsettings.FLUENTCMS_CONTACTFORM_COMPACT_FIELDS
+    top_row_columns = appsettings.FLUENTCMS_CONTACTFORM_COMPACT_GRID_SIZE
+    top_column_class = appsettings.FLUENTCMS_CONTACTFORM_COMPACT_COLUMN_CSS_CLASS
 
     class Meta:
         model = ContactFormData
