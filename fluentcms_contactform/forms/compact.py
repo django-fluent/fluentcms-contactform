@@ -50,7 +50,8 @@ class CompactContactForm(AbstractContactForm):
 
     def __init__(self, *args, **kwargs):
         super(CompactContactForm, self).__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs['placeholder'] = u"{0}:".format(field.label)
         if 'phone_number' in self.fields:
             self.fields['phone_number'].label = _("Phone")
+
+        for field in self.fields.values():
+            field.widget.attrs['placeholder'] = u"{0}:".format(field.label)
