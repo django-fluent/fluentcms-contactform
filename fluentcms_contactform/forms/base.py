@@ -78,6 +78,8 @@ class AbstractContactForm(forms.ModelForm):
         # Support receiving a user argument.
         self.user = kwargs.pop('user', None)
         super(AbstractContactForm, self).__init__(data, *args, **kwargs)
+        if 'phone_number' in self.fields:
+            self.fields['phone_number'].widget.input_type = 'tel'
 
     def get_field_summary(self):
         """
