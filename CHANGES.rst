@@ -1,6 +1,13 @@
 Changelog
 =========
 
+Version 1.3.1 (2016-07-29)
+------------------------
+
+* Added ``type="tel"`` for phone number field.
+* Fix shortened placeholder text for phone number field.
+
+
 Version 1.3 (2016-07-29)
 ------------------------
 
