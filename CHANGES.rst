@@ -1,6 +1,13 @@
 Changelog
 =========
 
+Version 1.3 (2016-07-29)
+------------------------
+
+* Added a new "compact" form style.
+  This form style displays the name/email/phone_number fields in a single (Bootstrap 3) column.
+
+
 Version 1.2 (2016-07-19)
 ------------------------
 
