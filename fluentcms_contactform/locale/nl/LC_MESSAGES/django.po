@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-24 12:25+0200\n"
+"POT-Creation-Date: 2016-07-29 20:57+0200\n"
 "PO-Revision-Date: 2015-10-08 21:32+0200\n"
 "Last-Translator: Diederik van der Boor <vdboor@edoburu.nl>\n"
 "Language-Team: \n"
@@ -19,11 +19,11 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Translated-Using: django-rosetta 0.7.4\n"
 
-#: admin.py:25
+#: admin.py:26
 msgid "Staff information"
 msgstr "Informatie voor beheerders"
 
-#: admin.py:42
+#: admin.py:44
 msgid "Archive selected entries"
 msgstr "Archiveer geselecteerde regels"
 
@@ -32,26 +32,54 @@ msgid "Default"
 msgstr "Standaard"
 
 #: appsettings.py:11
+msgid "Compact"
+msgstr "Compact"
+
+#: appsettings.py:15
 msgid "Default with captcha"
 msgstr "Standaard met captcha"
 
-#: content_plugins.py:13
+#: appsettings.py:20
+msgid "Default with reCAPTCHA"
+msgstr "Standaard met reCAPTCHA"
+
+#: content_plugins.py:27
+#, python-brace-format
+msgid ""
+"This form style can't be used, it requires the '{0}' app to be installed."
+msgstr ""
+"Deze stijl kan niet gebruikt worden omdat de '{0}' app niet geïnstalleerd is."
+
+#: content_plugins.py:33
+#, python-brace-format
+msgid ""
+"This form style can't be used, not all required libraries are installed.\n"
+"{0}"
+msgstr ""
+"Deze stijl kan niet gebruikt worden omdat niet alle benodigde voorzieningen geïnstalleerd zijn."
+"{0}"
+
+#: content_plugins.py:46
 msgid "Media"
 msgstr ""
 
-#: email.py:114
+#: email.py:118
 #, python-brace-format
 msgid "Contact form submitted by '{name}'"
 msgstr "Contactformulier verstuurd door '{name}'"
 
-#: forms/base.py:21 templates/fluentcms_contactform/forms/base.html:43
+#: forms/base.py:22 templates/fluentcms_contactform/forms/base.html:43
 msgid "Submit"
 msgstr "Versturen"
 
-#: forms/captcha.py:14
+#: forms/captcha.py:15 forms/recaptcha.py:15
 msgctxt "captcha-help-text"
 msgid "Type the text."
 msgstr "Typ de tekst."
+
+#: forms/compact.py:54
+msgid "Phone"
+msgstr "Telefoon"
 
 #: models.py:18
 msgid "Submit date"

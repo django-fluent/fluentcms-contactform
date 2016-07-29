@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-24 12:24+0200\n"
+"POT-Creation-Date: 2016-07-29 20:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: admin.py:25
+#: admin.py:26
 msgid "Staff information"
 msgstr ""
 
-#: admin.py:42
+#: admin.py:44
 msgid "Archive selected entries"
 msgstr ""
 
@@ -30,25 +30,50 @@ msgid "Default"
 msgstr ""
 
 #: appsettings.py:11
+msgid "Compact"
+msgstr ""
+
+#: appsettings.py:15
 msgid "Default with captcha"
 msgstr ""
 
-#: content_plugins.py:13
+#: appsettings.py:20
+msgid "Default with reCAPTCHA"
+msgstr ""
+
+#: content_plugins.py:27
+#, python-brace-format
+msgid ""
+"This form style can't be used, it requires the '{0}' app to be installed."
+msgstr ""
+
+#: content_plugins.py:33
+#, python-brace-format
+msgid ""
+"This form style can't be used, not all required libraries are installed.\n"
+"{0}"
+msgstr ""
+
+#: content_plugins.py:46
 msgid "Media"
 msgstr ""
 
-#: email.py:114
+#: email.py:118
 #, python-brace-format
 msgid "Contact form submitted by '{name}'"
 msgstr ""
 
-#: forms/base.py:21 templates/fluentcms_contactform/forms/base.html:43
+#: forms/base.py:22 templates/fluentcms_contactform/forms/base.html:43
 msgid "Submit"
 msgstr ""
 
-#: forms/captcha.py:14
+#: forms/captcha.py:15 forms/recaptcha.py:15
 msgctxt "captcha-help-text"
 msgid "Type the text."
+msgstr ""
+
+#: forms/compact.py:54
+msgid "Phone"
 msgstr ""
 
 #: models.py:18
