@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from fluent_contents.models import ContentItem
 from phonenumber_field.modelfields import PhoneNumberField
@@ -28,6 +29,7 @@ class AbstractContactFormData(models.Model):
         verbose_name_plural = _("Contact form data")
 
 
+@python_2_unicode_compatible
 class ContactFormData(AbstractContactFormData):
     """
     Visitor-submitted form data.
@@ -44,10 +46,11 @@ class ContactFormData(AbstractContactFormData):
         verbose_name = _("Contact form data")
         verbose_name_plural = _("Contact form data")
 
-    def __unicode__(self):
+    def __str__(self):
         return u'{0}'.format(self.subject or self.email)
 
 
+@python_2_unicode_compatible
 class ContactFormItem(ContentItem):
     """
     Plugin definition
@@ -61,7 +64,7 @@ class ContactFormItem(ContentItem):
         verbose_name = _("Contact form")
         verbose_name_plural = _("Contact form")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.email_to
 
     def get_form_class(self):
