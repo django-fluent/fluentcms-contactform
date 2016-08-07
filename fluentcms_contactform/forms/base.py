@@ -1,6 +1,7 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django import forms
+from django.utils.encoding import force_text
 from django.utils.translation import ugettext_lazy as _
 from .. import appsettings
 from ..email import send_contact_form_email
@@ -88,7 +89,7 @@ class AbstractContactForm(forms.ModelForm):
         :rtype: collections.OrderedDict
         """
         return OrderedDict([
-            (unicode(field.label), field.value()) for field in self.visible_fields() if field.name not in self.hide_summary_fields
+            (force_text(field.label), field.value()) for field in self.visible_fields() if field.name not in self.hide_summary_fields
         ])
 
     def submit(self, request, email_to, style='default'):
