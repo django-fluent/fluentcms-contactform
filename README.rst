@@ -1,3 +1,12 @@
+.. image:: https://img.shields.io/travis/edoburu/fluentcms-contactform/master.svg?branch=master
+    :target: http://travis-ci.org/edoburu/fluentcms-contactform
+.. image:: https://img.shields.io/pypi/v/fluentcms-contactform.svg
+    :target: https://pypi.python.org/pypi/fluentcms-contactform/
+.. image:: https://img.shields.io/pypi/l/fluentcms-contactform.svg
+    :target: https://pypi.python.org/pypi/fluentcms-contactform/
+.. image:: https://img.shields.io/codecov/c/github/edoburu/fluentcms-contactform/master.svg
+    :target: https://codecov.io/github/edoburu/fluentcms-contactform?branch=master
+
 fluentcms-contactform
 =====================
 

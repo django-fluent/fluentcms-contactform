@@ -1,8 +1,14 @@
 Changelog
 =========
 
+Version 1.3.2 (2016-08-07)
+--------------------------
+
+* Fixed Python 3 support.
+
+
 Version 1.3.1 (2016-07-29)
-------------------------
+--------------------------
 
 * Added ``type="tel"`` for phone number field.
 * Fix shortened placeholder text for phone number field.
