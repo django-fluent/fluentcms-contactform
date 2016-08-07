@@ -20,6 +20,8 @@ if not settings.configured:
             'django.contrib.contenttypes',
             'django.contrib.auth',
             'django.contrib.sites',
+            'django.contrib.admin',
+            'django.contrib.messages',
             'crispy_forms',
             'fluent_contents',
             'fluent_contents.tests.testapp',
