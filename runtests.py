@@ -31,6 +31,7 @@ if not settings.configured:
         FLUENT_CONTENTS_CACHE_OUTPUT = False,
         TEST_RUNNER = 'django.test.simple.DjangoTestSuiteRunner' if django.VERSION < (1,6) else 'django.test.runner.DiscoverRunner',
         ROOT_URLCONF = 'fluentcms_contactform.tests.urls',
+        CRISPY_TEMPLATE_PACK = 'bootstrap3',
         STATIC_URL = '/static/'
     )
 
