@@ -1,6 +1,12 @@
 Changelog
 =========
 
+Version 1.3.3 (2016-08-19)
+--------------------------
+
+* Avoid Django migrations change when changing ``FORM_STYLE_CHOICES``.
+
+
 Version 1.3.2 (2016-08-07)
 --------------------------
 
