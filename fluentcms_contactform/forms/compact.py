@@ -54,4 +54,4 @@ class CompactContactForm(AbstractContactForm):
             self.fields['phone_number'].label = _("Phone")
 
         for field in self.fields.values():
-            field.widget.attrs['placeholder'] = u"{0}:".format(field.label)
+            field.widget.attrs['placeholder'] = u"{0}".format(field.label)
