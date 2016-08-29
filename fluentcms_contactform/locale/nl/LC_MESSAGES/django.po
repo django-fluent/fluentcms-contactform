@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-29 16:43+0200\n"
+"POT-Creation-Date: 2016-08-29 16:44+0200\n"
 "PO-Revision-Date: 2015-10-08 21:32+0200\n"
 "Last-Translator: Diederik van der Boor <vdboor@edoburu.nl>\n"
 "Language-Team: \n"
@@ -78,8 +78,8 @@ msgid "Type the text."
 msgstr "Typ de tekst."
 
 #: forms/compact.py:54
-msgid "Phone"
-msgstr "Telefoon"
+msgid "Phone (optional)"
+msgstr "Telefoon (optioneel)"
 
 #: models.py:19
 msgid "Submit date"
