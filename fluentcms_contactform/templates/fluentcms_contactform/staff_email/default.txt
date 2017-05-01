@@ -1,4 +1,4 @@
-{% load i18n %}{% blocktrans context 'email-text' with site_domain=site.domain %}Dear staff,
+{% load i18n %}{% autoescape off %}{% blocktrans context 'email-text' with site_domain=site.domain %}Dear staff,
 
 A contactform was just filled in at {{ site_domain }}.{% endblocktrans %}
 {% for title, value in form_data.items %}
@@ -8,4 +8,4 @@ A contactform was just filled in at {{ site_domain }}.{% endblocktrans %}
 {{ admin_form_data_url }}
 
 {% blocktrans context 'email-text' with site_name=site.name %}Best,
-The {{ site_name }} team{% endblocktrans %}
+The {{ site_name }} team{% endblocktrans %}{% endautoescape %}

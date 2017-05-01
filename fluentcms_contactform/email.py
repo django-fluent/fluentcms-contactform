@@ -1,5 +1,7 @@
 from __future__ import absolute_import
 from email.utils import formataddr
+
+import django
 from django.conf import settings
 from django.contrib.admin.templatetags.admin_urls import admin_urlname
 from django.core.mail import EmailMessage
@@ -134,6 +136,15 @@ class MessageFactory(object):
 def render_txt_template(template_name, context):
     """
     Render a plain text template without escaping variables to HTML.
-    This is achieved by disabling the ``autoescape`` option of the :class:`~django.template.Context` instance.
+
+    .. note::
+        This is only supported for Django 1.10 and below,
+        thus exists for backwards compatibility.
     """
-    return render_to_string(template_name, context, context_instance=Context(autoescape=False))
+    if django.VERSION >= (1, 11):
+        # Can't disable autoescaping anymore!
+        # It's a backend engine setting now.
+        return render_to_string(template_name, context)
+    else:
+        # For backwards compatibility
+        return render_to_string(template_name, context, context_instance=Context(autoescape=False))
