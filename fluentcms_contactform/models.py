@@ -3,12 +3,16 @@ from __future__ import unicode_literals
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
+from django.utils.module_loading import import_string
 from django.utils.translation import ugettext_lazy as _
 from fluent_contents.models import ContentItem
 from phonenumber_field.modelfields import PhoneNumberField
 from . import appsettings
-from .compat import lru_cache
-from .utils import import_symbol
+
+try:
+    from functions import lru_cache  # Python 3.2 and up
+except ImportError:
+    from django.utils.lru_cache import lru_cache  # Django 1.7
 
 
 class AbstractContactFormData(models.Model):
@@ -75,7 +79,7 @@ class ContactFormItem(ContentItem):
 def _get_form_class(form_style):
     # Load and cache the form class.
     style = get_form_style_settings(form_style)
-    return import_symbol(style['form_class'])
+    return import_string(style['form_class'])
 
 
 def get_form_style_settings(form_style):

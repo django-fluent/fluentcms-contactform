@@ -1,12 +1,12 @@
 from django.conf import settings
 from django.contrib.admin.widgets import AdminTextareaWidget
 from django.core.exceptions import ValidationError, ImproperlyConfigured
+from django.utils.module_loading import import_string
 from django.utils.translation import ugettext_lazy as _
 from fluent_contents.extensions import plugin_pool, ContentPlugin, ContentItemForm
 
 from fluentcms_contactform.forms.base import SubmitButton
 from .models import ContactFormItem, get_form_style_settings
-from .utils import import_symbol
 
 
 class ContactFormItemForm(ContentItemForm):
@@ -28,8 +28,8 @@ class ContactFormItemForm(ContentItemForm):
                 raise ValidationError(msg.format(app))
 
         try:
-            import_symbol(style_settings['form_class'])
-        except (ImportError, ImproperlyConfigured, AttributeError) as e:
+            import_string(style_settings['form_class'])
+        except (ImportError, ImproperlyConfigured) as e:
             msg = _("This form style can't be used, not all required libraries are installed.\n{0}")
             raise ValidationError(msg.format(str(e)))
 
