@@ -8,6 +8,7 @@ from .models import ContactFormData
 FORM_DATA_FIELDS = tuple(DefaultContactForm.base_fields.keys())
 
 
+@admin.register(ContactFormData)
 class ContactFormDataAdmin(admin.ModelAdmin):
     """
     Administrate the submitted contact form data.
@@ -42,6 +43,3 @@ class ContactFormDataAdmin(admin.ModelAdmin):
         queryset.update(is_archived=True)
 
     archive_entries.short_description = _("Archive selected entries")
-
-
-admin.site.register(ContactFormData, ContactFormDataAdmin)
