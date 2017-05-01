@@ -5,9 +5,9 @@ Changes in git
 --------------
 
 * Prepare for Django 1.11 support (awaits dependencies)
-* **NOTE:** As of Django 1.11, make sure ``{% autoescape off %}`` is used in the ``.txt`` templates.
+* **NOTE:** As of Django 1.10, make sure ``{% autoescape off %}`` is used in the ``.txt`` templates.
   Previously, this behavior could be controlled from Python code.
-  That is no longer possible as of Django 1.11.
+  That is no longer possible as of Django 1.10.
 
 
 Version 1.3.3 (2016-08-19)

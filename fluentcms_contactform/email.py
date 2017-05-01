@@ -141,7 +141,7 @@ def render_txt_template(template_name, context):
         This is only supported for Django 1.10 and below,
         thus exists for backwards compatibility.
     """
-    if django.VERSION >= (1, 11):
+    if django.VERSION >= (1, 10):
         # Can't disable autoescaping anymore!
         # It's a backend engine setting now.
         return render_to_string(template_name, context)
