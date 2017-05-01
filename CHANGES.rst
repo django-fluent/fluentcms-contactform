@@ -1,13 +1,16 @@
 Changelog
 =========
 
-Changes in git
---------------
+Changes in 1.4 (2017-05-01)
+---------------------------
 
-* Prepare for Django 1.11 support (awaits dependencies)
-* **NOTE:** As of Django 1.10, make sure ``{% autoescape off %}`` is used in the ``.txt`` templates.
-  Previously, this behavior could be controlled from Python code.
-  That is no longer possible as of Django 1.10.
+* Added Django 1.11 support.
+* Fixed submitting emails in Django 1.10.
+* Changed compact form style: removed the ``:`` sign, added "(optional)" to phone field.
+
+**NOTE:** As of Django 1.10, make sure ``{% autoescape off %}`` is used in the ``.txt`` templates.
+Previously, this behavior could be controlled from Python code.
+That is no longer possible as of Django 1.10.
 
 
 Version 1.3.3 (2016-08-19)
