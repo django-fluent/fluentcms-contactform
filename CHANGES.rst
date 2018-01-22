@@ -5,7 +5,7 @@ Changes in 2.0 (2018-01-22)
 ---------------------------
 
 * Added Django 2.0 support.
-* dropped Django 1.8 / 1.9 support.
+* Dropped Django 1.8 / 1.9 support.
 
 
 Changes in 1.4 (2017-05-01)
