@@ -1,11 +1,11 @@
-.. image:: https://img.shields.io/travis/edoburu/fluentcms-contactform/master.svg?branch=master
-    :target: http://travis-ci.org/edoburu/fluentcms-contactform
+.. image:: https://img.shields.io/travis/django-fluent/fluentcms-contactform/master.svg?branch=master
+    :target: http://travis-ci.org/django-fluent/fluentcms-contactform
 .. image:: https://img.shields.io/pypi/v/fluentcms-contactform.svg
     :target: https://pypi.python.org/pypi/fluentcms-contactform/
 .. image:: https://img.shields.io/pypi/l/fluentcms-contactform.svg
     :target: https://pypi.python.org/pypi/fluentcms-contactform/
-.. image:: https://img.shields.io/codecov/c/github/edoburu/fluentcms-contactform/master.svg
-    :target: https://codecov.io/github/edoburu/fluentcms-contactform?branch=master
+.. image:: https://img.shields.io/codecov/c/github/django-fluent/fluentcms-contactform/master.svg
+    :target: https://codecov.io/github/django-fluent/fluentcms-contactform?branch=master
 
 fluentcms-contactform
 =====================
@@ -279,7 +279,7 @@ Contributing
 If you like this module, forked it, or would like to improve it, please let us know!
 Pull requests are welcome too. :-)
 
-.. _django-fluent-contents: https://github.com/edoburu/django-fluent-contents
+.. _django-fluent-contents: https://github.com/django-fluent/django-fluent-contents
 .. _django-phonenumber-field: https://github.com/stefanfoulis/django-phonenumber-field
 .. _django-simple-captcha: https://github.com/mbi/django-simple-captcha
 .. _django-recaptcha: https://github.com/praekelt/django-recaptcha
