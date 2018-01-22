@@ -10,7 +10,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from . import appsettings
 
 try:
-    from functions import lru_cache  # Python 3.2 and up
+    from functools import lru_cache  # Python 3.2 and up
 except ImportError:
     from django.utils.lru_cache import lru_cache  # Django 1.7
 
