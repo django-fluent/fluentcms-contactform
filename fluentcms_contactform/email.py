@@ -4,17 +4,17 @@ from email.utils import formataddr
 import django
 from django.conf import settings
 from django.contrib.admin.templatetags.admin_urls import admin_urlname
+from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
-from django.core.urlresolvers import reverse
 from django.template import Context
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 from fluentcms_contactform import appsettings
 
 try:
-    from django.contrib.sites.shortcuts import get_current_site  # Django 1.7+
+    from django.urls import reverse  # Django 1.10+
 except ImportError:
-    from django.contrib.sites.models import get_current_site
+    from django.core.urlresolvers import reverse
 
 
 def send_contact_form_email(contactform, request, email_to, style='default'):

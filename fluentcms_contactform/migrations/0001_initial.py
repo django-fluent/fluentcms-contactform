@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ContactFormItem',
             fields=[
-                ('contentitem_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='fluent_contents.ContentItem')),
+                ('contentitem_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='fluent_contents.ContentItem', on_delete=models.CASCADE)),
                 ('form_style', models.CharField(max_length=100, verbose_name='Form', choices=fluentcms_contactform.appsettings.FORM_STYLE_CHOICES)),
                 ('email_to', models.EmailField(help_text='The email address where submitted forms should be sent to.', max_length=200, verbose_name='Email to')),
                 ('success_message', models.TextField(verbose_name='Thank you message')),
