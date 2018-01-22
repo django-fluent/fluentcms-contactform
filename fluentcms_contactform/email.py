@@ -8,13 +8,9 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
 from django.template import Context
 from django.template.loader import render_to_string
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from fluentcms_contactform import appsettings
-
-try:
-    from django.urls import reverse  # Django 1.10+
-except ImportError:
-    from django.core.urlresolvers import reverse
 
 
 def send_contact_form_email(contactform, request, email_to, style='default'):

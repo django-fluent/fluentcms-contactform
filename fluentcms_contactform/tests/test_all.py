@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
-from django.core.urlresolvers import resolve
+from django.urls import resolve
 from django.test import RequestFactory
 from django.test import TestCase
 from django.core import mail
