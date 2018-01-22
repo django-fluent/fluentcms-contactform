@@ -39,16 +39,16 @@ setup(
     license='Apache 2.0',
 
     install_requires=[
-        'django-fluent-contents>=1.0',
+        'django-fluent-contents>=2.0',
         'django-phonenumber-field>=0.7.2',
         'django-crispy-forms >= 1.3',
     ],
     extras_require = {
-        'captcha': ['django-simple-captcha >= 0.4.6'],
-        'recaptcha': ['django-recaptcha >= 1.0.4'],
+        'captcha': ['django-simple-captcha >= 0.5.6'],
+        'recaptcha': ['django-recaptcha >= 1.3.0'],
     },
     requires=[
-        'Django (>=1.4)',
+        'Django (>=1.10)',
     ],
 
     description='A contact form plugin django-fluent-contents',
@@ -78,10 +78,9 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Framework :: Django',
-        'Framework :: Django :: 1.8',
-        'Framework :: Django :: 1.9',
         'Framework :: Django :: 1.10',
         'Framework :: Django :: 1.11',
+        'Framework :: Django :: 2.0',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         'Topic :: Software Development :: Libraries :: Python Modules',
