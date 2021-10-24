@@ -1,16 +1,12 @@
+from collections import OrderedDict
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django import forms
-from django.utils.encoding import force_text
-from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import force_str
+from django.utils.translation import gettext_lazy as _
 from .. import appsettings
 from ..email import send_contact_form_email
 from ..utils import get_remote_ip
-
-try:
-    from collections import OrderedDict
-except ImportError:
-    from django.utils.datastructures import SortedDict as OrderedDict
 
 
 class SubmitButton(Submit):
@@ -21,7 +17,7 @@ class SubmitButton(Submit):
     """
 
     def __init__(self, text=_("Submit"), **kwargs):
-        super(SubmitButton, self).__init__(name='contactform_submit', value=text, **kwargs)
+        super().__init__(name='contactform_submit', value=text, **kwargs)
 
 
 class ContactFormHelper(FormHelper):
@@ -35,7 +31,7 @@ class ContactFormHelper(FormHelper):
     field_class = appsettings.FLUENTCMS_CONTACTFORM_FIELD_CSS_CLASS
 
 
-class PrefillUserMixin(object):
+class PrefillUserMixin:
     """
     A mixin to prefill the user name + email fields.
     """
@@ -78,7 +74,7 @@ class AbstractContactForm(forms.ModelForm):
     def __init__(self, data=None, *args, **kwargs):
         # Support receiving a user argument.
         self.user = kwargs.pop('user', None)
-        super(AbstractContactForm, self).__init__(data, *args, **kwargs)
+        super().__init__(data, *args, **kwargs)
         if 'phone_number' in self.fields:
             self.fields['phone_number'].widget.input_type = 'tel'
 
@@ -89,7 +85,7 @@ class AbstractContactForm(forms.ModelForm):
         :rtype: collections.OrderedDict
         """
         return OrderedDict([
-            (force_text(field.label), field.value()) for field in self.visible_fields() if field.name not in self.hide_summary_fields
+            (force_str(field.label), field.value()) for field in self.visible_fields() if field.name not in self.hide_summary_fields
         ])
 
     def submit(self, request, email_to, style='default'):

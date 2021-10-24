@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from email.utils import formataddr
 
 import django
@@ -9,7 +8,7 @@ from django.core.mail import EmailMessage
 from django.template import Context
 from django.template.loader import render_to_string
 from django.urls import reverse
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from fluentcms_contactform import appsettings
 
 
@@ -24,7 +23,7 @@ def send_contact_form_email(contactform, request, email_to, style='default'):
     message.send()
 
 
-class MessageFactory(object):
+class MessageFactory:
     """
     Generate a contact email.
 
@@ -84,7 +83,7 @@ class MessageFactory(object):
         """
         current_app = self.request.resolver_match.namespace
         url = reverse(admin_urlname(object._meta, 'change'), args=(object.pk,), current_app=current_app)
-        return 'http://{0}{1}'.format(self.site.domain, url)
+        return f'http://{self.site.domain}{url}'
 
     def get_email_from(self, user_name, user_email):
         """
@@ -93,7 +92,7 @@ class MessageFactory(object):
         A ``Reply-To`` header should be added to handle direct email replies.
         """
         via = appsettings.FLUENTCMS_CONTACTFORM_VIA or self.site.name
-        return formataddr((u"{0} via {1}".format(user_name, via), settings.DEFAULT_FROM_EMAIL))
+        return formataddr((f"{user_name} via {via}", settings.DEFAULT_FROM_EMAIL))
 
     def get_email_headers(self, user_name, user_email):
         """
@@ -116,7 +115,7 @@ class MessageFactory(object):
             return _("Contact form submitted by '{name}'").format(name=self.get_user_name(form))
         except KeyError:
             # Don't fail when translations are broken.
-            return "Contact form submitted by '{name}'".format(name=self.get_user_name(form))
+            return f"Contact form submitted by '{self.get_user_name(form)}'"
 
     def render_text_message(self, email_context, style='default'):
         """

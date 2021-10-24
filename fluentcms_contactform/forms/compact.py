@@ -3,7 +3,7 @@
 """
 from crispy_forms.layout import Layout, Row, Column
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from fluentcms_contactform import appsettings
 from fluentcms_contactform.forms.base import AbstractContactForm, ContactFormHelper, SubmitButton
@@ -49,9 +49,9 @@ class CompactContactForm(AbstractContactForm):
         return helper
 
     def __init__(self, *args, **kwargs):
-        super(CompactContactForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         if 'phone_number' in self.fields:
             self.fields['phone_number'].label = _("Phone (optional)")
 
         for field in self.fields.values():
-            field.widget.attrs['placeholder'] = u"{0}".format(field.label)
+            field.widget.attrs['placeholder'] = f"{field.label}"

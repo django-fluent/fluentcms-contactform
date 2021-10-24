@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib.admin.widgets import AdminTextareaWidget
 from django.core.exceptions import ValidationError, ImproperlyConfigured
 from django.utils.module_loading import import_string
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from fluent_contents.extensions import plugin_pool, ContentPlugin, ContentItemForm
 
 from fluentcms_contactform.forms.base import SubmitButton
@@ -69,9 +69,9 @@ class ContactFormPlugin(ContentPlugin):
         Render the plugin, process the form.
         """
         # Allow multiple forms at the same page.
-        prefix = 'contact{0}'.format(instance.pk)
+        prefix = f'contact{instance.pk}'
         submit_button_name = self.submit_button_name.format(pk=instance.pk)
-        session_data_key = 'contact{0}_submitted'.format(instance.pk)
+        session_data_key = f'contact{instance.pk}_submitted'
 
         # Base context
         context = self.get_context(request, instance, **kwargs)

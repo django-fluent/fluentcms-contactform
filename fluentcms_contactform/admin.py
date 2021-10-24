@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin.widgets import AdminTextareaWidget
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from .forms.default import DefaultContactForm
 from .models import ContactFormData
 
@@ -37,7 +37,7 @@ class ContactFormDataAdmin(admin.ModelAdmin):
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.name == 'internal_note':
             kwargs['widget'] = AdminTextareaWidget(attrs={'rows': 4})
-        return super(ContactFormDataAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+        return super().formfield_for_dbfield(db_field, **kwargs)
 
     def archive_entries(self, request, queryset):
         queryset.update(is_archived=True)

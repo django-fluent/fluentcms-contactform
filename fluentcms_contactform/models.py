@@ -1,18 +1,11 @@
-from __future__ import unicode_literals
-
+from functools import lru_cache
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.module_loading import import_string
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from fluent_contents.models import ContentItem
 from phonenumber_field.modelfields import PhoneNumberField
 from . import appsettings
-
-try:
-    from functools import lru_cache  # Python 3.2 and up
-except ImportError:
-    from django.utils.lru_cache import lru_cache  # Django 1.7
 
 
 class AbstractContactFormData(models.Model):
@@ -33,7 +26,6 @@ class AbstractContactFormData(models.Model):
         verbose_name_plural = _("Contact form data")
 
 
-@python_2_unicode_compatible
 class ContactFormData(AbstractContactFormData):
     """
     Visitor-submitted form data.
@@ -51,10 +43,9 @@ class ContactFormData(AbstractContactFormData):
         verbose_name_plural = _("Contact form data")
 
     def __str__(self):
-        return u'{0}'.format(self.subject or self.email)
+        return f'{self.subject or self.email}'
 
 
-@python_2_unicode_compatible
 class ContactFormItem(ContentItem):
     """
     Plugin definition
@@ -89,4 +80,4 @@ def get_form_style_settings(form_style):
     for key, style in appsettings.FLUENTCMS_CONTACTFORM_STYLES:
         if key == form_style:
             return style
-    raise ImproperlyConfigured("No FLUENTCMS_CONTACTFORM_STYLES defined for '{0}'".format(form_style))
+    raise ImproperlyConfigured(f"No FLUENTCMS_CONTACTFORM_STYLES defined for '{form_style}'")
