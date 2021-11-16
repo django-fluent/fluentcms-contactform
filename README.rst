@@ -1,5 +1,8 @@
-.. image:: https://img.shields.io/travis/django-fluent/fluentcms-contactform/master.svg?branch=master
-    :target: http://travis-ci.org/django-fluent/fluentcms-contactform
+fluentcms-contactform
+=====================
+
+.. image:: https://github.com/django-fluent/fluentcms-contactform/actions/workflows/tests.yaml/badge.svg?branch=master
+    :target: https://github.com/django-fluent/fluentcms-contactform/actions/workflows/tests.yaml
 .. image:: https://img.shields.io/pypi/v/fluentcms-contactform.svg
     :target: https://pypi.python.org/pypi/fluentcms-contactform/
 .. image:: https://img.shields.io/pypi/l/fluentcms-contactform.svg
@@ -7,8 +10,6 @@
 .. image:: https://img.shields.io/codecov/c/github/django-fluent/fluentcms-contactform/master.svg
     :target: https://codecov.io/github/django-fluent/fluentcms-contactform?branch=master
 
-fluentcms-contactform
-=====================
 
 A plugin for django-fluent-contents_ to show a simple contact form.
 
