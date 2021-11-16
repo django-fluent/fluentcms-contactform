@@ -1,7 +1,7 @@
 """
 
 """
-from crispy_forms.layout import Layout, Row, Column
+from crispy_forms.layout import Column, Layout, Row
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
@@ -20,6 +20,7 @@ class CompactContactForm(AbstractContactForm):
 
         FLUENTCMS_CONTACTFORM_DEFAULT_FIELDS = ('name', 'email', 'phone_number', 'message')
     """
+
     top_row_fields = appsettings.FLUENTCMS_CONTACTFORM_COMPACT_FIELDS
     top_row_columns = appsettings.FLUENTCMS_CONTACTFORM_COMPACT_GRID_SIZE
     top_column_class = appsettings.FLUENTCMS_CONTACTFORM_COMPACT_COLUMN_CSS_CLASS
@@ -38,20 +39,19 @@ class CompactContactForm(AbstractContactForm):
         col_class = self.top_column_class.format(size=col_size)
 
         helper = ContactFormHelper()
-        helper.form_class = 'form-vertical contactform-compact'
-        helper.label_class = 'sr-only'
-        helper.field_class = ''
+        helper.form_class = "form-vertical contactform-compact"
+        helper.label_class = "sr-only"
+        helper.field_class = ""
         helper.layout = Layout(
-            Row(*[Column(name, css_class=col_class) for name in top_fields]),
-            *other_fields
+            Row(*[Column(name, css_class=col_class) for name in top_fields]), *other_fields
         )
         helper.add_input(SubmitButton())
         return helper
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if 'phone_number' in self.fields:
-            self.fields['phone_number'].label = _("Phone (optional)")
+        if "phone_number" in self.fields:
+            self.fields["phone_number"].label = _("Phone (optional)")
 
         for field in self.fields.values():
-            field.widget.attrs['placeholder'] = f"{field.label}"
+            field.widget.attrs["placeholder"] = f"{field.label}"

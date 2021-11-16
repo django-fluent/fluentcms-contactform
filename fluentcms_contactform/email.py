@@ -9,10 +9,11 @@ from django.template import Context
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+
 from fluentcms_contactform import appsettings
 
 
-def send_contact_form_email(contactform, request, email_to, style='default'):
+def send_contact_form_email(contactform, request, email_to, style="default"):
     """
     Send an email notification message.
     :type contactform: fluentcms_contactform.forms.base.AbstractContactForm
@@ -30,6 +31,7 @@ class MessageFactory:
     This class is purposely split in in many small pieces
     so parts are easily reusable to send custom contact emails.
     """
+
     text_template_name = "fluentcms_contactform/staff_email/{style}.txt"
 
     def __init__(self, request):
@@ -40,7 +42,7 @@ class MessageFactory:
         self.request = request
         self.site = get_current_site(self.request)
 
-    def get_message(self, form, email_to, style='default', **extra_context):
+    def get_message(self, form, email_to, style="default", **extra_context):
         """
         Generate an email notification message.
         :type email_to: str
@@ -57,10 +59,10 @@ class MessageFactory:
         return EmailMessage(subject, email_txt, email_from, to=[email_to], headers=headers)
 
     def get_user_name(self, form):
-        return form.cleaned_data['name']
+        return form.cleaned_data["name"]
 
     def get_user_email(self, form):
-        return form.cleaned_data['email']
+        return form.cleaned_data["email"]
 
     def get_email_context(self, form, **extra_context):
         """
@@ -68,11 +70,11 @@ class MessageFactory:
         """
         db_data = form.instance
         context = {
-            'request': self.request,
-            'site': self.site,
-            'db_data': db_data,
-            'admin_form_data_url': self.get_admin_url(db_data),
-            'form_data': form.get_field_summary(),
+            "request": self.request,
+            "site": self.site,
+            "db_data": db_data,
+            "admin_form_data_url": self.get_admin_url(db_data),
+            "form_data": form.get_field_summary(),
         }
         context.update(extra_context)
         return context
@@ -82,8 +84,10 @@ class MessageFactory:
         Generate the admin URL for an object.
         """
         current_app = self.request.resolver_match.namespace
-        url = reverse(admin_urlname(object._meta, 'change'), args=(object.pk,), current_app=current_app)
-        return f'http://{self.site.domain}{url}'
+        url = reverse(
+            admin_urlname(object._meta, "change"), args=(object.pk,), current_app=current_app
+        )
+        return f"http://{self.site.domain}{url}"
 
     def get_email_from(self, user_name, user_email):
         """
@@ -104,7 +108,7 @@ class MessageFactory:
         # To: info@example.org
         # Reply-To: Name <email>
         return {
-            'Reply-To': formataddr((user_name, user_email)),
+            "Reply-To": formataddr((user_name, user_email)),
         }
 
     def render_subject(self, form):
@@ -117,13 +121,13 @@ class MessageFactory:
             # Don't fail when translations are broken.
             return f"Contact form submitted by '{self.get_user_name(form)}'"
 
-    def render_text_message(self, email_context, style='default'):
+    def render_text_message(self, email_context, style="default"):
         """
         Render a plain text message.
         """
         template_names = [
             self.text_template_name.format(style=style),
-            self.text_template_name.format(style='default'),
+            self.text_template_name.format(style="default"),
         ]
         return render_txt_template(template_names, email_context)
 

@@ -10,4 +10,4 @@ def get_remote_ip(request):
     However, we recommend using wsgiunproxy instead,
     so all packages can read the same header consistently.
     """
-    return request.META.get('REMOTE_ADDR', None)
+    return request.META.get("REMOTE_ADDR", None)
